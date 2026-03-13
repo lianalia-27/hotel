@@ -15,7 +15,7 @@
     ════════════════════════════════════════ --}}
     <div class="doc-header">
         <div class="doc-logo-circle">
-            {{-- Jika ada file logo, gunakan: <img src="{{ asset('images/logo.png') }}" alt="Logo"> --}}
+           <img src="{{ asset('images/logo.png') }}" alt="Logo">
             <div class="doc-logo-text">PPKD<br>JKT<br>PUSAT</div>
         </div>
         <div class="doc-hotel-name">PPKD HOTEL</div>
