@@ -1,0 +1,326 @@
+/* ============================================
+   PPKD HOTEL — Room Types Stylesheet
+   ============================================ */
+
+/* ---- Cards Grid ---- */
+.rt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* ---- Room Type Card ---- */
+.rt-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--blue-100);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.rt-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.rt-card--inactive {
+    opacity: 0.65;
+    border-color: var(--gray-200);
+}
+
+/* ---- Card Top ---- */
+.rt-card-top {
+    padding: 16px 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rt-card-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
+    color: white;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+/* ---- Toggle Switch ---- */
+.toggle-btn {
+    width: 42px;
+    height: 24px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.toggle-on  { background: linear-gradient(135deg, var(--blue-400), var(--blue-500)); }
+.toggle-off { background: var(--gray-300); }
+
+.toggle-knob {
+    position: absolute;
+    top: 3px;
+    width: 18px; height: 18px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    transition: left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: block;
+}
+
+.toggle-on  .toggle-knob { left: calc(100% - 21px); }
+.toggle-off .toggle-knob { left: 3px; }
+
+/* ---- Card Body ---- */
+.rt-card-body {
+    padding: 14px 20px 16px;
+    flex: 1;
+}
+
+.rt-card-name {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--blue-900);
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.rt-card-desc {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    line-height: 1.55;
+    margin-bottom: 14px;
+}
+
+/* ---- Meta Info ---- */
+.rt-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.rt-meta-item {
+    font-size: 0.75rem;
+    color: var(--blue-700);
+    background: var(--pastel-1);
+    border: 1px solid var(--blue-100);
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* ---- Facilities ---- */
+.rt-facilities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.rt-fac-tag {
+    font-size: 0.68rem;
+    color: var(--blue-600);
+    background: var(--blue-50);
+    border: 1px solid var(--blue-200);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.rt-fac-more {
+    font-size: 0.68rem;
+    color: var(--gray-500);
+    padding: 2px 8px;
+    font-style: italic;
+}
+
+/* ---- Card Footer ---- */
+.rt-card-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--blue-50);
+    background: linear-gradient(to right, var(--blue-50), white);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.rt-price { display: flex; flex-direction: column; gap: 2px; }
+
+.rt-price-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue-400);
+}
+
+.rt-price-value {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--blue-800);
+    line-height: 1;
+}
+
+.rt-price-weekend {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-top: 2px;
+}
+
+.rt-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* ---- Detail Page ---- */
+.rt-detail-header {
+    background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    color: white;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.rt-detail-header::after {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+    border-radius: 50%;
+}
+
+.rt-detail-header-left h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.rt-detail-header-left p {
+    font-size: 0.8rem;
+    opacity: 0.65;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.rt-detail-header-right {
+    text-align: right;
+    z-index: 1;
+}
+
+.rt-detail-price-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 4px;
+}
+
+.rt-detail-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.rt-detail-price-weekend {
+    font-size: 0.8rem;
+    color: var(--gold-lt);
+    margin-top: 4px;
+}
+
+/* ---- Facility Tags in Detail ---- */
+.rt-fac-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.rt-fac-list .fac-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--pastel-1);
+    border: 1px solid var(--blue-200);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--blue-700);
+}
+
+.rt-fac-list .fac-item::before {
+    content: '✓';
+    font-size: 0.7rem;
+    color: var(--blue-400);
+    font-weight: 700;
+}
+
+/* ---- Form Facilities Checkboxes ---- */
+.fac-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.fac-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1.5px solid var(--blue-200);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 0.82rem;
+    color: var(--gray-700);
+    user-select: none;
+}
+
+.fac-checkbox-item:hover {
+    border-color: var(--blue-400);
+    background: var(--pastel-1);
+    color: var(--blue-700);
+}
+
+.fac-checkbox-item input[type="checkbox"] {
+    width: 15px; height: 15px;
+    accent-color: var(--blue-500);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.fac-checkbox-item.checked {
+    border-color: var(--blue-400);
+    background: var(--pastel-2);
+    color: var(--blue-700);
+}
+
+@media (max-width: 768px) {
+    .rt-grid { grid-template-columns: 1fr; }
+    .rt-detail-header { flex-direction: column; gap: 20px; }
+    .rt-detail-header-right { text-align: left; }
+}

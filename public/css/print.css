@@ -1,0 +1,267 @@
+/* ============================================
+   PPKD HOTEL — Print Stylesheet
+   Sesuai foto: putih bersih, logo tengah, field titik dua
+   ============================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    color: #000000;
+    background: #d0d0d0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 30px;
+}
+
+/* ---- Dokumen A4 putih ---- */
+.print-document {
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.18);
+    padding: 18mm 20mm 15mm 20mm;
+    position: relative;
+}
+
+/* ---- Header: logo + nama hotel di tengah ---- */
+.doc-header {
+    text-align: center;
+    margin-bottom: 10pt;
+}
+
+.doc-logo-circle {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    background: #fff;
+    margin: 0 auto 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.doc-logo-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.doc-logo-text {
+    font-size: 7pt;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.25;
+    color: #000;
+    padding: 4px;
+}
+
+.doc-hotel-name {
+    font-size: 12pt;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    color: #000;
+    margin-top: 2pt;
+}
+
+/* ---- Judul "Reservation Confirmation" ---- */
+.doc-subtitle {
+    font-size: 9.5pt;
+    font-weight: normal;
+    color: #000;
+    margin-top: 8pt;
+    margin-bottom: 2pt;
+}
+
+.doc-line {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 3pt 0 8pt 0;
+}
+
+/* ---- Field rows: Label  :  Value ---- */
+.field-row {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 2.5pt;
+    line-height: 1.5;
+}
+
+.fl {
+    font-size: 9pt;
+    color: #000;
+    min-width: 120px;
+    flex-shrink: 0;
+    padding-bottom: 1px;
+}
+
+.fc {
+    font-size: 9pt;
+    color: #000;
+    margin: 0 5px 0 2px;
+    flex-shrink: 0;
+    padding-bottom: 1px;
+}
+
+.fv {
+    font-size: 9pt;
+    color: #000;
+    flex: 1;
+    border-bottom: 1px solid #aaa;
+    min-height: 13pt;
+    padding-bottom: 1px;
+}
+
+.fv-plain {
+    font-size: 9pt;
+    color: #000;
+    flex: 1;
+    min-height: 13pt;
+    padding-bottom: 1px;
+}
+
+/* ---- Dua kolom sejajar (kiri + kanan) ---- */
+.two-col {
+    display: flex;
+    gap: 16pt;
+    margin-bottom: 6pt;
+}
+
+.two-col .left-col  { flex: 1.3; }
+.two-col .right-col { flex: 1; }
+
+/* ---- Pemisah garis horizontal ---- */
+hr.sep {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 6pt 0;
+}
+
+/* ---- Paragraf teks keterangan ---- */
+.info-text {
+    font-size: 8pt;
+    color: #000;
+    line-height: 1.55;
+    margin-bottom: 6pt;
+    text-align: justify;
+}
+
+/* ---- Judul section (bold kecil) ---- */
+.section-label {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 3pt;
+}
+
+/* ---- Cancellation Policy ---- */
+.policy-title {
+    font-size: 9pt;
+    font-weight: bold;
+    margin-bottom: 3pt;
+}
+
+.policy-ol {
+    padding-left: 18pt;
+    margin: 0;
+}
+
+.policy-ol li {
+    font-size: 8pt;
+    color: #000;
+    margin-bottom: 2.5pt;
+    line-height: 1.45;
+}
+
+/* ---- Tanda tangan ---- */
+.sig-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20pt;
+}
+
+.sig-box {
+    width: 150px;
+    text-align: center;
+}
+
+.sig-space { height: 36pt; }
+
+.sig-line {
+    border-top: 1px solid #000;
+    margin-bottom: 3pt;
+}
+
+.sig-label {
+    font-size: 8pt;
+    color: #000;
+}
+
+/* ---- Tombol aksi (hanya layar) ---- */
+.print-actions {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+}
+
+.print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.print-btn-primary {
+    background: #1e3a5f;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(30,58,95,0.35);
+}
+
+.print-btn-primary:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.print-btn-outline {
+    background: #fff;
+    color: #1e3a5f;
+    border: 1.5px solid #bfdbfe;
+}
+
+.print-btn-outline:hover { background: #eff6ff; }
+
+/* ---- Print media ---- */
+@media print {
+    body { padding: 0; background: #fff; }
+
+    .print-document {
+        box-shadow: none;
+        width: 100%;
+        padding: 12mm 16mm 10mm 16mm;
+    }
+
+    .print-actions { display: none !important; }
+
+    @page {
+        margin: 0;
+        size: A4 portrait;
+    }
+}
