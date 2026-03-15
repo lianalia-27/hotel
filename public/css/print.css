@@ -1,15 +1,20 @@
 /* ============================================
    PPKD HOTEL — Print Stylesheet
-   Sesuai foto: putih bersih, logo tengah, field titik dua
+   Sesuai foto: putih bersih, logo tengah,
+   field dengan titik dua, data dari DB tampil
    ============================================ */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10pt;
-    color: #000000;
-    background: #d0d0d0;
+    color: #000;
+    background: #ccc;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -17,28 +22,26 @@ body {
     padding: 30px;
 }
 
-/* ---- Dokumen A4 putih ---- */
+/* ── Dokumen A4 putih ─────────────────── */
 .print-document {
     width: 210mm;
     min-height: 297mm;
-    background: #ffffff;
+    background: #fff;
     box-shadow: 0 2px 20px rgba(0,0,0,0.18);
-    padding: 18mm 20mm 15mm 20mm;
+    padding: 16mm 20mm 14mm 20mm;
     position: relative;
 }
 
-/* ---- Header: logo + nama hotel di tengah ---- */
+/* ── Header tengah ────────────────────── */
 .doc-header {
     text-align: center;
     margin-bottom: 10pt;
 }
 
 .doc-logo-circle {
-    width: 62px;
-    height: 62px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    border: 2px solid #333;
-    background: #fff;
     margin: 0 auto 5px auto;
     display: flex;
     align-items: center;
@@ -49,7 +52,7 @@ body {
 .doc-logo-circle img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;    /* gambar memenuhi lingkaran */
     border-radius: 50%;
 }
 
@@ -70,7 +73,7 @@ body {
     margin-top: 2pt;
 }
 
-/* ---- Judul "Reservation Confirmation" ---- */
+/* ── Judul dokumen ────────────────────── */
 .doc-subtitle {
     font-size: 9.5pt;
     font-weight: normal;
@@ -79,80 +82,99 @@ body {
     margin-bottom: 2pt;
 }
 
-.doc-line {
-    border: none;
-    border-top: 1px solid #000;
-    margin: 3pt 0 8pt 0;
-}
-
-/* ---- Field rows: Label  :  Value ---- */
-.field-row {
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 2.5pt;
-    line-height: 1.5;
-}
-
-.fl {
-    font-size: 9pt;
-    color: #000;
-    min-width: 120px;
-    flex-shrink: 0;
-    padding-bottom: 1px;
-}
-
-.fc {
-    font-size: 9pt;
-    color: #000;
-    margin: 0 5px 0 2px;
-    flex-shrink: 0;
-    padding-bottom: 1px;
-}
-
-.fv {
-    font-size: 9pt;
-    color: #000;
-    flex: 1;
-    border-bottom: 1px solid #aaa;
-    min-height: 13pt;
-    padding-bottom: 1px;
-}
-
-.fv-plain {
-    font-size: 9pt;
-    color: #000;
-    flex: 1;
-    min-height: 13pt;
-    padding-bottom: 1px;
-}
-
-/* ---- Dua kolom sejajar (kiri + kanan) ---- */
-.two-col {
-    display: flex;
-    gap: 16pt;
-    margin-bottom: 6pt;
-}
-
-.two-col .left-col  { flex: 1.3; }
-.two-col .right-col { flex: 1; }
-
-/* ---- Pemisah garis horizontal ---- */
+/* ── Garis pemisah ────────────────────── */
 hr.sep {
     border: none;
     border-top: 1px solid #000;
-    margin: 6pt 0;
+    margin: 5pt 0;
 }
 
-/* ---- Paragraf teks keterangan ---- */
+/* ────────────────────────────────────────
+   FIELD ROW — Label : Value
+   display:flex agar selalu sejajar
+──────────────────────────────────────── */
+.field-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 3pt;
+    min-height: 16pt;
+    line-height: 1.4;
+}
+
+/* Label */
+.fl {
+    display: block;
+    font-size: 9pt;
+    color: #000;
+    min-width: 130px;
+    max-width: 130px;
+    flex-shrink: 0;
+    padding-bottom: 2px;
+    white-space: nowrap;
+}
+
+/* Titik dua */
+.fc {
+    display: block;
+    font-size: 9pt;
+    color: #000;
+    width: 14px;
+    flex-shrink: 0;
+    padding-bottom: 2px;
+    text-align: center;
+}
+
+/* Nilai — display:block wajib agar tampil */
+.fv {
+    display: block;
+    font-size: 9pt;
+    color: #000;
+    flex: 1;
+    min-width: 80px;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 2px;
+    padding-left: 3px;
+    min-height: 15pt;
+    word-break: break-word;
+}
+
+/* Nilai tanpa garis (bank info) */
+.fv-plain {
+    display: block;
+    font-size: 9pt;
+    color: #000;
+    flex: 1;
+    padding-left: 3px;
+    min-height: 15pt;
+}
+
+/* ── Dua kolom sejajar ────────────────── */
+.two-col {
+    display: flex;
+    flex-direction: row;
+    gap: 14pt;
+    margin-bottom: 4pt;
+}
+
+.two-col .left-col  { flex: 1.3; min-width: 0; }
+.two-col .right-col { flex: 1;   min-width: 0; }
+
+.two-col .right-col .fl {
+    min-width: 55px;
+    max-width: 55px;
+}
+
+/* ── Teks keterangan ──────────────────── */
 .info-text {
     font-size: 8pt;
     color: #000;
     line-height: 1.55;
-    margin-bottom: 6pt;
+    margin-bottom: 5pt;
     text-align: justify;
 }
 
-/* ---- Judul section (bold kecil) ---- */
+/* ── Label section bold ───────────────── */
 .section-label {
     font-size: 9pt;
     font-weight: bold;
@@ -160,7 +182,7 @@ hr.sep {
     margin-bottom: 3pt;
 }
 
-/* ---- Cancellation Policy ---- */
+/* ── Cancellation Policy ──────────────── */
 .policy-title {
     font-size: 9pt;
     font-weight: bold;
@@ -179,18 +201,14 @@ hr.sep {
     line-height: 1.45;
 }
 
-/* ---- Tanda tangan ---- */
+/* ── Tanda tangan ─────────────────────── */
 .sig-row {
     display: flex;
     justify-content: flex-end;
     margin-top: 20pt;
 }
 
-.sig-box {
-    width: 150px;
-    text-align: center;
-}
-
+.sig-box   { width: 150px; text-align: center; }
 .sig-space { height: 36pt; }
 
 .sig-line {
@@ -198,12 +216,9 @@ hr.sep {
     margin-bottom: 3pt;
 }
 
-.sig-label {
-    font-size: 8pt;
-    color: #000;
-}
+.sig-label { font-size: 8pt; color: #000; }
 
-/* ---- Tombol aksi (hanya layar) ---- */
+/* ── Tombol aksi (layar saja) ─────────── */
 .print-actions {
     position: fixed;
     bottom: 24px;
@@ -248,9 +263,12 @@ hr.sep {
 
 .print-btn-outline:hover { background: #eff6ff; }
 
-/* ---- Print media ---- */
+/* ── Media Print ──────────────────────── */
 @media print {
-    body { padding: 0; background: #fff; }
+    body {
+        padding: 0;
+        background: #fff;
+    }
 
     .print-document {
         box-shadow: none;
@@ -259,6 +277,10 @@ hr.sep {
     }
 
     .print-actions { display: none !important; }
+
+    /* Paksa semua flex tampil saat print */
+    .field-row, .two-col { display: flex !important; }
+    .fl, .fc, .fv, .fv-plain { display: block !important; }
 
     @page {
         margin: 0;

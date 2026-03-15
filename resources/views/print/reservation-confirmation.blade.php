@@ -10,33 +10,50 @@
 
 <div class="print-document">
 
-    {{-- HEADER --}}
+    {{-- ══════════════════════════════════
+         HEADER: Logo + PPKD HOTEL
+    ══════════════════════════════════ --}}
     <div class="doc-header">
         <div class="doc-logo-circle">
-    <img src="{{ asset('images/logo.png') }}" alt="Logo PPKD Jakarta Pusat">
-     </div>
+            {{--
+                Jika sudah punya logo asli:
+                <img src="{{ asset('images/logo.png') }}" alt="Logo PPKD">
+
+                Jika belum, teks placeholder di bawah:
+            --}}
+            <div class="doc-logo-text">PPKD<br>JKT<br>PUSAT</div>
+        </div>
         <div class="doc-hotel-name">PPKD HOTEL</div>
     </div>
 
+    {{-- ══════════════════════════════════
+         JUDUL DOKUMEN
+    ══════════════════════════════════ --}}
     <div class="doc-subtitle">Reservation Confirmation</div>
     <hr class="sep">
 
-    {{-- TO --}}
+    {{-- ══════════════════════════════════
+         BARIS TO
+    ══════════════════════════════════ --}}
     <div class="field-row" style="margin-bottom:5pt;">
         <span class="fl">To.</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->to_name ?? $reservation->guest->company ?? '' }}</span>
+        <span class="fv">{{ $reservation->to_name ?? '' }}</span>
     </div>
 
     <hr class="sep">
 
-    {{-- DUA KOLOM: Pemesan kiri, Kontak kanan --}}
+    {{-- ══════════════════════════════════
+         DUA KOLOM: Pemesan (kiri) & Hotel (kanan)
+    ══════════════════════════════════ --}}
     <div class="two-col">
+
+        {{-- Kiri --}}
         <div class="left-col">
             <div class="field-row">
                 <span class="fl">Company / Agent</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->company_agent ?? $reservation->guest->company ?? '' }}</span>
+                <span class="fv">{{ $reservation->company_agent ?? '' }}</span>
             </div>
             <div class="field-row">
                 <span class="fl">Booking No.</span>
@@ -46,34 +63,36 @@
             <div class="field-row">
                 <span class="fl">Book By</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->book_by ?? $reservation->user->name ?? '' }}</span>
+                <span class="fv">{{ $reservation->book_by ?? '' }}</span>
             </div>
             <div class="field-row">
                 <span class="fl">Phone</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->contact_phone ?? $reservation->guest->mobile_phone ?? $reservation->guest->phone ?? '' }}</span>
+                <span class="fv">{{ $reservation->phone ?? '' }}</span>
             </div>
             <div class="field-row">
                 <span class="fl">Email</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->contact_email ?? $reservation->guest->email ?? '' }}</span>
+                <span class="fv">{{ $reservation->email ?? '' }}</span>
             </div>
         </div>
+
+        {{-- Kanan --}}
         <div class="right-col">
             <div class="field-row">
                 <span class="fl">Telp</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->hotel_telp ?? '' }}</span>
+                <span class="fv">{{ $reservation->telp ?? '' }}</span>
             </div>
             <div class="field-row">
                 <span class="fl">Fax</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->hotel_fax ?? '' }}</span>
+                <span class="fv">{{ $reservation->fax ?? '' }}</span>
             </div>
             <div class="field-row">
                 <span class="fl">Email</span>
                 <span class="fc">:</span>
-                <span class="fv">{{ $reservation->hotel_email ?? '' }}</span>
+                <span class="fv">{{ $reservation->email_hotel ?? '' }}</span>
             </div>
             <div class="field-row">
                 <span class="fl">Date</span>
@@ -81,79 +100,82 @@
                 <span class="fv">
                     @if($reservation->booking_date)
                         {{ $reservation->booking_date->format('d M Y') }}
-                    @elseif($reservation->issued_date)
-                        {{ $reservation->issued_date->format('d M Y') }}
                     @else
-                        {{ $reservation->created_at->format('d M Y') }}
+                        {{ now()->format('d M Y') }}
                     @endif
                 </span>
             </div>
         </div>
+
     </div>
 
     <hr class="sep">
 
-    {{-- INFO TAMU & KAMAR --}}
+    {{-- ══════════════════════════════════
+         INFO TAMU & KAMAR
+    ══════════════════════════════════ --}}
     <div class="field-row">
         <span class="fl">First Name</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->guest->name ?? '' }}</span>
+        <span class="fv">{{ $reservation->full_name }}</span>
     </div>
     <div class="field-row">
         <span class="fl">Arrival Date</span>
         <span class="fc">:</span>
         <span class="fv">
-            {{ $reservation->arrival_date->format('d M Y') }}
-            @if($reservation->arrival_time)
-                &nbsp;&nbsp;pukul {{ \Carbon\Carbon::parse($reservation->arrival_time)->format('H:i') }}
+            @if($reservation->arrival_date)
+                {{ $reservation->arrival_date->format('d M Y') }}
             @endif
         </span>
     </div>
     <div class="field-row">
         <span class="fl">Departure Date</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->departure_date->format('d M Y') }}</span>
-    </div>
-    <div class="field-row">
-        <span class="fl">Total Night</span>
-        <span class="fc">:</span>
-        <span class="fv">{{ $reservation->total_nights }} Night(s)</span>
-    </div>
-    <div class="field-row">
-        <span class="fl">Room/Unit Type</span>
-        <span class="fc">:</span>
         <span class="fv">
-            {{ $reservation->room->roomType->name ?? '' }}
-            @if($reservation->room->room_number ?? null)
-                &nbsp;— Kamar {{ $reservation->room->room_number }}
+            @if($reservation->departure_date)
+                {{ $reservation->departure_date->format('d M Y') }}
             @endif
         </span>
     </div>
     <div class="field-row">
+        <span class="fl">Total Night</span>
+        <span class="fc">:</span>
+        <span class="fv">
+            {{ $reservation->total_nights ?? 0 }} Night(s)
+        </span>
+    </div>
+    <div class="field-row">
+        <span class="fl">Room/Unit Type</span>
+        <span class="fc">:</span>
+        <span class="fv">{{ $reservation->room_type ?? '' }}</span>
+    </div>
+    <div class="field-row">
         <span class="fl">Person Pax</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->num_persons }} Person(s)</span>
+        <span class="fv">{{ $reservation->person_pax ?? '' }} Person(s)</span>
     </div>
     <div class="field-row">
         <span class="fl">Room Rate Net</span>
         <span class="fc">:</span>
         <span class="fv">
-            @if($reservation->room_rate)
-                Rp {{ number_format($reservation->room_rate, 0, ',', '.') }}
+            @if($reservation->room_rate_net)
+                Rp {{ number_format($reservation->room_rate_net, 0, ',', '.') }}
             @endif
         </span>
     </div>
 
     <hr class="sep">
 
-    {{-- TEKS JAMINAN --}}
+    {{-- ══════════════════════════════════
+         TEKS JAMINAN
+    ══════════════════════════════════ --}}
     <p class="info-text">
         Please guarantee this booking with credit card number with clear copy of the card both sides and card holder
         signature in the column provided the copy of credit card both sides should be faxed to hotel fax number.
         Please settle your outstanding to or account:
     </p>
 
-    {{-- REKENING BANK --}}
+    {{-- Info rekening bank --}}
     <div class="field-row">
         <span class="fl" style="min-width:170px;max-width:170px;">Bank Transfer</span>
         <span class="fv-plain"></span>
@@ -161,23 +183,29 @@
     <div class="field-row">
         <span class="fl" style="min-width:170px;max-width:170px;">Mandiri Account</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->mandiri_account ?? '' }}</span>
+        <span class="fv-plain"></span>
     </div>
     <div class="field-row" style="margin-bottom:5pt;">
         <span class="fl" style="min-width:170px;max-width:170px;">Mandiri Name Account</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->mandiri_account_name ?? '' }}</span>
+        <span class="fv-plain"></span>
     </div>
 
     <hr class="sep">
 
-    {{-- KARTU KREDIT --}}
+    {{-- ══════════════════════════════════
+         KARTU KREDIT / JAMINAN
+    ══════════════════════════════════ --}}
     <div class="section-label">Reservation guaranteed by the following credit card:</div>
 
     <div class="field-row">
         <span class="fl">Card Number</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->card_number ?? '' }}</span>
+        <span class="fv">
+            @if($reservation->card_number)
+                {{ $reservation->card_number }}
+            @endif
+        </span>
     </div>
     <div class="field-row">
         <span class="fl">Card holder name</span>
@@ -197,7 +225,11 @@
     <div class="field-row">
         <span class="fl">Expired date/month/year</span>
         <span class="fc">:</span>
-        <span class="fv">{{ $reservation->card_expired ?? '' }}</span>
+        <span class="fv">
+            @if($reservation->card_expired_date)
+                {{ $reservation->card_expired_date->format('m / Y') }}
+            @endif
+        </span>
     </div>
     <div class="field-row" style="margin-bottom:6pt;">
         <span class="fl">Card holder signature</span>
@@ -207,7 +239,9 @@
 
     <hr class="sep">
 
-    {{-- CANCELLATION POLICY --}}
+    {{-- ══════════════════════════════════
+         KEBIJAKAN PEMBATALAN
+    ══════════════════════════════════ --}}
     <div class="policy-title">Cancellation policy:</div>
     <ol class="policy-ol">
         <li>Please note that check in time is 02.00 pm and check out time 12.00 pm.</li>
@@ -216,7 +250,9 @@
             before the day of arrival. Please carefully note your cancellation number.</li>
     </ol>
 
-    {{-- TANDA TANGAN --}}
+    {{-- ══════════════════════════════════
+         TANDA TANGAN
+    ══════════════════════════════════ --}}
     <div class="sig-row">
         <div class="sig-box">
             <div class="sig-space"></div>
@@ -225,8 +261,9 @@
         </div>
     </div>
 
-</div>
+</div>{{-- /.print-document --}}
 
+{{-- Tombol aksi — hilang saat print --}}
 <div class="print-actions">
     <a href="{{ route('reservations.show', $reservation) }}" class="print-btn print-btn-outline">
         ← Kembali
