@@ -18,6 +18,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::resource('room-types', RoomTypeController::class);
+    Route::patch('room-types/{roomType}/toggle', 
+        [RoomTypeController::class, 'toggleStatus'])
+        ->name('room-types.toggle');
+
     // Reservations
     Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
     Route::get('/reservations/create', [ReservationController::class, 'create'])->name('reservations.create');

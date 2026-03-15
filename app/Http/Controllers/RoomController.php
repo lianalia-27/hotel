@@ -27,12 +27,16 @@ class RoomController extends Controller
         return back()->with('error', 'Kamar tidak dalam status dibersihkan.');
     }
 
-    public function markMaintenance(Room $room)
-    {
-        $this->authorize('admin');
-        $room->update(['status' => 'maintenance']);
-        return back()->with('success', "Kamar {$room->room_number} ditandai sebagai maintenance.");
-    }
+   public function markMaintenance(Room $room)
+{
+    // Samakan dengan cara cek role di method lain
+    if (auth()->user()->role != 'administrator') {
+    abort(403);
+}
+
+    $room->update(['status' => 'maintenance']);
+    return back()->with('success', "Kamar {$room->room_number} ditandai sebagai maintenance.");
+}
 
     public function store(Request $request)
     {

@@ -315,13 +315,17 @@
         <a href="{{ route('rooms.index') }}" class="nav-link {{ request()->routeIs('rooms.*') ? 'active' : '' }}">
             <i class="bi bi-door-open-fill"></i> Status Kamar
         </a>
+    
 
-        @if(auth()->user()->isAdmin())
-        <div class="nav-section-title">Administrator</div>
-        <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
-            <i class="bi bi-people-fill"></i> Kelola Karyawan
-        </a>
-        @endif
+      @if(auth()->user()->isAdmin())
+    <div class="nav-section-title">Administrator</div>
+    <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
+        <i class="bi bi-people-fill"></i> Kelola Karyawan
+    </a>
+    <a href="{{ route('room-types.index') }}" class="nav-link {{ request()->routeIs('room-types.*') ? 'active' : '' }}">
+        <i class="bi bi-door-open-fill"></i> Tipe Kamar
+    </a>
+@endif
     </nav>
 
     <div class="sidebar-footer">
